@@ -21,7 +21,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,6 +33,7 @@ import com.example.tmdb.viewmodels.movies.MoviesViewModel
 import com.example.tmdb.viewmodels.tv.TvViewModel
 import com.example.tmdb.views.composables.CustomAppBar
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MainScreen(
@@ -107,7 +107,7 @@ fun MainScreen(
                     .padding(horizontal = dimensionResource(R.dimen.padding_15))
             ) {
                 composable(Routes.HOME) {
-                    val viewModel: MoviesViewModel = hiltViewModel()
+                    val viewModel: MoviesViewModel = koinViewModel()
                     MoviesScreen(
                         navController = navController,
                         state = viewModel.state.collectAsStateWithLifecycle().value,
@@ -115,7 +115,7 @@ fun MainScreen(
                         onEvent = { event -> viewModel.onEvent(event) })
                 }
                 composable(Routes.Tv) {
-                    val viewModel: TvViewModel = hiltViewModel()
+                    val viewModel: TvViewModel = koinViewModel()
                     TvScreen(
                         state = viewModel.state.collectAsStateWithLifecycle().value,
                         onEvent = { event -> viewModel.onEvent(event) }
@@ -123,7 +123,7 @@ fun MainScreen(
                 }
                 composable(Routes.SETTINGS) { SettingsScreen() }
                 composable("${Routes.MOVIE_DETAIL}/{movieId}") { backStackEntry ->
-                    val viewModel: MovieDetailsViewModel = hiltViewModel()
+                    val viewModel: MovieDetailsViewModel = koinViewModel()
                     val movieId = backStackEntry.arguments?.getString("movieId")?.toIntOrNull()
                     MovieDetailsScreen(
                         movieId = movieId,
@@ -158,5 +158,3 @@ fun SettingsScreen() {
         style = MaterialTheme.typography.bodyLarge
     )
 }
-
-

@@ -3,7 +3,7 @@ package com.example.tmdb.viewmodels.moviedetails.usecases
 import com.example.tmdb.network.IRetrofitService
 import javax.inject.Inject
 
-class GetMovieUseCase @Inject constructor(private val api: IRetrofitService) : IGetMovieUseCase {
+class GetMovieUseCase(private val api: IRetrofitService) : IGetMovieUseCase {
 
 
     override suspend fun getMovieDetails(movieId: Int) =

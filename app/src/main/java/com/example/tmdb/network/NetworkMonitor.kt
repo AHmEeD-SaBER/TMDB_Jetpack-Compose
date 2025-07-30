@@ -6,9 +6,9 @@ import android.net.NetworkCapabilities
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class NetworkMonitor @Inject constructor(
-    @ApplicationContext private val context: Context
-) : INetworkMonitor  {
+class NetworkMonitor(
+    private val context: Context
+) : INetworkMonitor {
 
     override suspend fun observeNetwork(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

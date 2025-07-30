@@ -7,7 +7,7 @@ import com.example.tmdb.network.IRetrofitService
 import com.example.tmdb.utils.Constants
 import javax.inject.Inject
 
-class GetMoviesUseCase @Inject constructor(
+class GetMoviesUseCase(
     private val api: IRetrofitService,
     private val networkMonitor: INetworkMonitor
 ) : IGetMoviesUseCase {

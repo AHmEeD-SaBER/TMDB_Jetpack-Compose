@@ -11,9 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-
-@HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val _state = MutableStateFlow(MainContract.MainState())
     val state: StateFlow<MainContract.MainState> = _state.asStateFlow()

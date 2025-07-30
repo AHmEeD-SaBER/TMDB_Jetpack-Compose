@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-@HiltViewModel
 class TvViewModel @Inject constructor(
     private val getTvsUseCase: IGetTvsUseCase,
     private val networkMonitor: INetworkMonitor
