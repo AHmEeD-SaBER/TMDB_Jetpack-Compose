@@ -1,0 +1,39 @@
+package com.example.tmdb.views.composables
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import com.example.tmdb.R
+import com.example.tmdb.data.MediaItem
+import com.example.tmdb.ui.theme.Typography
+
+
+@Composable
+fun MediaItemInfo(modifier: Modifier = Modifier, mediaItem: MediaItem) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(
+                start = dimensionResource(R.dimen.padding_15),
+            ), verticalArrangement = Arrangement.SpaceEvenly
+    ) {
+        MediaTitle(title = mediaItem.title)
+        Text(
+            text = "Release Date: ${mediaItem.releaseDate}",
+            style = Typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+        )
+        MediaRating(
+            modifier = Modifier.fillMaxWidth(),
+            rating = mediaItem.vote_average,
+            voteCount = mediaItem.vote_count
+        )
+    }
+}

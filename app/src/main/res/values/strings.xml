@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TMDb</string>
+    <string name="rating_icon">Rating Icon</string>
+    <string name="menu_icon_description">Side Menu Icon</string>
+    <string name="notification_icon_description">Notifications</string>
+
+    <!-- Navigation Drawer Items -->
+    <string name="nav_popular_movies">Popular Movies</string>
+    <string name="nav_tv_shows">TV Shows</string>
+    <string name="nav_bookmarks">Bookmarks</string>
+    <string name="retry">Retry</string>
+</resources>
