@@ -1,5 +1,8 @@
 package com.example.tmdb.views.screens
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,20 +23,25 @@ import com.example.tmdb.views.composables.MovieCard
 import kotlinx.coroutines.flow.SharedFlow
 
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun MoviesScreen(
     modifier: Modifier = Modifier,
     state: MovieContract.MoviesState = MovieContract.MoviesState(),
     effect: SharedFlow<MovieContract.MovieEffect>,
     onEvent: (MovieContract.MoviesEvent) -> Unit = {},
-    navController: androidx.navigation.NavController
+    navController: androidx.navigation.NavController,
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    sharedTransitionScope: SharedTransitionScope
 ) {
 
     LaunchedEffect(Unit) {
         effect.collect { e ->
             when (e) {
                 is MovieContract.MovieEffect.NavigateToMovieDetails -> {
-                    navController.navigate("${Routes.MOVIE_DETAIL}/${e.movieId}")
+                    navController.navigate(
+                        Routes.MovieDetail(e.movieId)
+                    )
                 }
             }
         }
@@ -66,7 +74,9 @@ fun MoviesScreen(
                     MovieCard(
                         movie = movie,
                         modifier = modifier,
-                        onEvent = { event -> onEvent(event) }
+                        onEvent = { event -> onEvent(event) },
+                        animatedVisibilityScope = animatedVisibilityScope,
+                        sharedTransitionScope = sharedTransitionScope
                     )
                 }
             }

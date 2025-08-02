@@ -3,7 +3,6 @@ package com.example.tmdb.viewmodels.tv.usecases
 import android.util.Log
 import com.example.tmdb.data.tv.Tv
 import com.example.tmdb.network.IRetrofitService
-import javax.inject.Inject
 
 class GetTvsUseCase(private val api: IRetrofitService) : IGetTvsUseCase {
 
@@ -21,3 +20,4 @@ class GetTvsUseCase(private val api: IRetrofitService) : IGetTvsUseCase {
         }
     }
 }
+

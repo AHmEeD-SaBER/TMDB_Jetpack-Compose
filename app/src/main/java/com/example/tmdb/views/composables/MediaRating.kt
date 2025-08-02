@@ -29,7 +29,7 @@ fun MediaRating(modifier: Modifier = Modifier, rating: Double, voteCount: Int) {
         Icon(
             painter = painterResource(R.drawable.rating_icon),
             contentDescription = stringResource(R.string.rating_icon),
-            tint = Color(0xFFFFC219) // Keeping star color yellow in both themes
+            tint = Color(0xFFFFC219)
         )
         Text(
             modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_5)),

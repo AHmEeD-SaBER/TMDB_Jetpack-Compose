@@ -1,5 +1,8 @@
 package com.example.tmdb.views.composables
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
@@ -16,11 +19,13 @@ import com.example.tmdb.R
 import com.example.tmdb.data.getFullPosterPath
 
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun MediaItemImage(
+fun SharedTransitionScope.MediaItemImage(
     modifier: Modifier = Modifier,
     posterPath: String = "",
-    contentDesc: String = ""
+    contentDesc: String = "",
+    animatedVisibilityScope: AnimatedVisibilityScope
 ) {
     Surface(
         modifier = modifier
@@ -36,8 +41,12 @@ fun MediaItemImage(
             contentDescription = contentDesc,
             modifier = Modifier
                 .fillMaxSize()
-                .clip(RoundedCornerShape(dimensionResource(R.dimen.corner_radius))),
-            contentScale = ContentScale.FillBounds
+                .clip(RoundedCornerShape(dimensionResource(R.dimen.corner_radius)))
+                .sharedElement(
+                    rememberSharedContentState(key = posterPath),
+                    animatedVisibilityScope = animatedVisibilityScope
+                ),
+            contentScale = ContentScale.Crop
         )
     }
 

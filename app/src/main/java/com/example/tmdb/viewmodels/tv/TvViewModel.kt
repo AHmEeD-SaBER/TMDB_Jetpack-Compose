@@ -2,23 +2,19 @@ package com.example.tmdb.viewmodels.tv
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tmdb.contracts.MovieContract
-import com.example.tmdb.contracts.MovieDetailsContract
 import com.example.tmdb.contracts.TvContract
 import com.example.tmdb.data.TMDbError
 import com.example.tmdb.network.INetworkMonitor
 import com.example.tmdb.utils.Constants
 import com.example.tmdb.viewmodels.tv.usecases.IGetTvsUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-class TvViewModel @Inject constructor(
+class TvViewModel(
     private val getTvsUseCase: IGetTvsUseCase,
     private val networkMonitor: INetworkMonitor
 ) : ViewModel() {

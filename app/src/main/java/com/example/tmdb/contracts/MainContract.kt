@@ -7,7 +7,7 @@ import com.example.tmdb.navigation.Routes
 class MainContract {
     data class MainState(
         val isDrawerOpen: Boolean = false,
-        val currentRoute: String = Routes.HOME,
+        val currentRoute: Routes = Routes.Movies(),
         val drawerItems: List<DrawerItem> = listOf(
             DrawerItem(id = 1, title = "Movies", icon = R.drawable.movie),
             DrawerItem(id = 2, title = "Tv Shows", icon = R.drawable.tv),

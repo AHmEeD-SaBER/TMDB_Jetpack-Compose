@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.json.serialization)
 }
 kotlin {
     jvmToolchain(11)
@@ -50,11 +49,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-    ksp(libs.hilt.compiler)
+    implementation(libs.navigation.compose)
+
+    // Animation for Shared Element Transitions
+    implementation(libs.animation.android)
 
     // Retrofit
     implementation(libs.retrofit)

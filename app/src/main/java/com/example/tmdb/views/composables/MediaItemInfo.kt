@@ -1,5 +1,8 @@
 package com.example.tmdb.views.composables
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,8 +18,13 @@ import com.example.tmdb.data.MediaItem
 import com.example.tmdb.ui.theme.Typography
 
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun MediaItemInfo(modifier: Modifier = Modifier, mediaItem: MediaItem) {
+fun SharedTransitionScope.MediaItemInfo(
+    modifier: Modifier = Modifier,
+    mediaItem: MediaItem,
+    animatedVisibilityScope: AnimatedVisibilityScope
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -24,7 +32,10 @@ fun MediaItemInfo(modifier: Modifier = Modifier, mediaItem: MediaItem) {
                 start = dimensionResource(R.dimen.padding_15),
             ), verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        MediaTitle(title = mediaItem.title)
+        MediaTitle(
+            title = mediaItem.title,
+            animatedVisibilityScope = animatedVisibilityScope
+        )
         Text(
             text = "Release Date: ${mediaItem.releaseDate}",
             style = Typography.bodyLarge,

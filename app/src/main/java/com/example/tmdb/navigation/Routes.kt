@@ -1,13 +1,27 @@
 package com.example.tmdb.navigation
 
-object Routes {
-    const val HOME = "home"
-    const val MOVIE_DETAIL = "movie_detail"
-    const val TV_SHOW_DETAIL = "tv_show_detail"
-    const val PERSON_DETAIL = "person_detail"
-    const val SEARCH = "search"
-    const val Tv = "favorites"
-    const val SETTINGS = "settings"
-}
+import kotlinx.serialization.Serializable
 
-object Movies
+@Serializable
+sealed class Routes {
+    abstract val title: String
+
+    @Serializable
+    data class MovieDetail(val movieId: Int) : Routes() {
+        override val title: String = "Movie Detail"
+    }
+
+    @Serializable
+    data class Movies(override val title: String = "Movies") : Routes()
+
+    @Serializable
+    data class TvDetail(val tvId: Int) : Routes() {
+        override val title: String = "Tv Detail"
+    }
+
+    @Serializable
+    data class Tvs(override val title: String = "Tv Shows") : Routes()
+
+    @Serializable
+    data class Settings(override val title: String = "Settings") : Routes()
+}

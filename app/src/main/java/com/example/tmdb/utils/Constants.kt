@@ -23,4 +23,5 @@ object Constants {
     }
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val API_KEY = "e2669d4bb6934afe70f92afab29a8d4b"
+    const val DEFAULT_ANIMATION_DURATION = 350
 }

@@ -26,7 +26,9 @@ import com.example.tmdb.contracts.MainContract
 fun CustomAppBar(
     title: String,
     modifier: Modifier = Modifier,
+    showBackButton: Boolean = false,
     onEvent: (MainContract.MainEvent) -> Unit = {},
+    onBackClick: () -> Unit = {}
 ) {
     Row(
         modifier = modifier
@@ -38,14 +40,22 @@ fun CustomAppBar(
     ) {
         IconButton(
             onClick = {
-                Log.d("CustomAppBar", "Menu button clicked")
-                onEvent(MainContract.MainEvent.OpenDrawer)
+                if (showBackButton) {
+                    onBackClick()
+                } else {
+                    Log.d("CustomAppBar", "Menu button clicked")
+                    onEvent(MainContract.MainEvent.OpenDrawer)
+                }
             },
             modifier = Modifier.size(48.dp)
         ) {
             Icon(
-                painter = painterResource(R.drawable.menu),
-                contentDescription = stringResource(R.string.menu_icon_description),
+                painter = painterResource(
+                    if (showBackButton) R.drawable.ic_arrow_back else R.drawable.menu
+                ),
+                contentDescription = stringResource(
+                    if (showBackButton) R.string.back_button_description else R.string.menu_icon_description
+                ),
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(24.dp)
             )

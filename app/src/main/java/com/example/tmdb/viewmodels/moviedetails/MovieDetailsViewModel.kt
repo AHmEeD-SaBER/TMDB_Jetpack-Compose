@@ -5,14 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.tmdb.contracts.MovieDetailsContract
 import com.example.tmdb.data.TMDbError
 import com.example.tmdb.viewmodels.moviedetails.usecases.IGetMovieUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-class MovieDetailsViewModel @Inject constructor(private val getMovieUseCase: IGetMovieUseCase,) :
+class MovieDetailsViewModel(private val getMovieUseCase: IGetMovieUseCase,) :
     ViewModel() {
     private val _state = MutableStateFlow(MovieDetailsContract.MovieDetailsState())
     var state = _state.asStateFlow()

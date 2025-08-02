@@ -1,5 +1,8 @@
 package com.example.tmdb.views.composables
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,11 +18,14 @@ import androidx.compose.ui.res.dimensionResource
 import com.example.tmdb.R
 import com.example.tmdb.data.MediaItem
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun MediaItemCard(
     modifier: Modifier = Modifier,
     mediaItem: MediaItem,
-    onItemClicked: (Int) -> Unit = {}
+    onItemClicked: (Int) -> Unit = {},
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    sharedTransitionScope: SharedTransitionScope
 ) {
     Row(
         modifier = modifier
@@ -33,7 +39,14 @@ fun MediaItemCard(
                 shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius))
             ), verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start
     ) {
-        MediaItemImage(posterPath = mediaItem.poster_path, contentDesc = mediaItem.title)
-        MediaItemInfo(mediaItem = mediaItem)
+        sharedTransitionScope.MediaItemImage(
+            posterPath = mediaItem.poster_path,
+            contentDesc = mediaItem.title,
+            animatedVisibilityScope = animatedVisibilityScope
+        )
+        sharedTransitionScope.MediaItemInfo(
+            mediaItem = mediaItem,
+            animatedVisibilityScope = animatedVisibilityScope
+        )
     }
 }

@@ -3,8 +3,7 @@ package com.example.tmdb.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
+
 
 class NetworkMonitor(
     private val context: Context

@@ -5,7 +5,6 @@ import com.example.tmdb.data.movies.Movie
 import com.example.tmdb.network.INetworkMonitor
 import com.example.tmdb.network.IRetrofitService
 import com.example.tmdb.utils.Constants
-import javax.inject.Inject
 
 class GetMoviesUseCase(
     private val api: IRetrofitService,

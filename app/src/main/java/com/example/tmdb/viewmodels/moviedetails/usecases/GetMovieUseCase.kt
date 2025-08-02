@@ -1,7 +1,6 @@
 package com.example.tmdb.viewmodels.moviedetails.usecases
 
 import com.example.tmdb.network.IRetrofitService
-import javax.inject.Inject
 
 class GetMovieUseCase(private val api: IRetrofitService) : IGetMovieUseCase {
 
