@@ -90,8 +90,10 @@ fun MainScreen(
                 .background(MaterialTheme.colorScheme.background)
                 .statusBarsPadding(),
             topBar = {
-                val currentDestination = navController.currentBackStackEntryAsState().value?.destination
-                val isMovieDetailsScreen = currentDestination?.route?.contains("MovieDetail") == true
+                val currentDestination =
+                    navController.currentBackStackEntryAsState().value?.destination
+                val isMovieDetailsScreen =
+                    currentDestination?.route?.contains("MovieDetail") == true
 
                 CustomAppBar(
                     title = state.currentRoute.title,
